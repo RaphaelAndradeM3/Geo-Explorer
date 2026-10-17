@@ -1,0 +1,43 @@
+{
+  "name": "geo-explorer",
+  "version": "1.0.0",
+  "description": "Geo-Explorer: Experiência interativa de exploração de trilhas de aprendizagem, desafios de código e certificados fictícios com suporte a Servidor MCP.",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "geo-explorer": "dist/index.js",
+    "geo-explorer-mcp": "dist/mcp/server.js"
+  },
+  "scripts": {
+    "dev": "tsx src/index.ts",
+    "start": "tsx src/index.ts",
+    "mcp": "tsx src/mcp/server.ts",
+    "build": "tsc && node scripts/copy-assets.js",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "keywords": [
+    "dio",
+    "geo-explorer",
+    "learning-tracks",
+    "code-challenge",
+    "mcp",
+    "model-context-protocol",
+    "certificates"
+  ],
+  "author": "Raphael Andrade",
+  "license": "MIT",
+  "dependencies": {
+    "@inquirer/prompts": "^7.3.2",
+    "@modelcontextprotocol/sdk": "^1.6.1",
+    "chalk": "^5.4.1",
+    "commander": "^13.1.0",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.9",
+    "tsx": "^4.19.3",
+    "typescript": "^5.7.3",
+    "vitest": "^3.0.7"
+  }
+}

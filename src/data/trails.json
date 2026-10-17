@@ -1,0 +1,483 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2026-10-17",
+  "tracks": [
+    {
+      "id": "python-ai",
+      "name": "Inteligência Artificial & Python Explorer",
+      "technology": "Python",
+      "category": "Data Science & AI",
+      "description": "Trilha imersiva em Inteligência Artificial, Machine Learning e Engenharia de Prompts utilizando o ecossistema Python.",
+      "estimatedHours": 60,
+      "level": "intermediario",
+      "prerequisites": ["Lógica de Programação", "Sintaxe Básica de Python"],
+      "modules": [
+        {
+          "id": "py-mod-1",
+          "title": "Fundamentos de Python e Análise de Dados",
+          "description": "Manipulação de dados estruturados e numéricos com NumPy e Pandas.",
+          "durationHours": 15,
+          "topics": ["Estruturas de Dados Avançadas", "NumPy Arrays e Matrizes", "DataFrames com Pandas", "Limpeza e Tratamento de Dados"]
+        },
+        {
+          "id": "py-mod-2",
+          "title": "Machine Learning Clássico e Scikit-Learn",
+          "description": "Modelos supervisionados, regressão, classificação e métricas de avaliação.",
+          "durationHours": 20,
+          "topics": ["Treino e Teste", "Regressão Linear e Logística", "Árvores de Decisão e Random Forest", "Avaliação: F1-Score, Curva ROC e Matriz de Confusão"]
+        },
+        {
+          "id": "py-mod-3",
+          "title": "IA Generativa, LLMs e Agentes Inteligentes",
+          "description": "Trabalhando com APIs de Grandes Modelos de Linguagem, RAG e orquestração de agentes.",
+          "durationHours": 25,
+          "topics": ["Prompt Engineering", "Embeddings e Bancos Vetoriais", "RAG (Retrieval-Augmented Generation)", "Padrões de Agentes Autônomos"]
+        }
+      ],
+      "challenges": [
+        {
+          "id": "ch-py-init",
+          "title": "Validador de Prompts e Extração de Entidades",
+          "level": "iniciante",
+          "description": "Crie uma função em Python que limpa um prompt recebido, remove espaços duplicados, detecta palavras-chave de comando e valida tamanho mínimo.",
+          "instructions": "Implemente a função `validar_prompt(texto: str) -> dict`. Deve retornar se é válido (mínimo de 10 caracteres sem pontuação vazia) e a lista de palavras-chave encontradas.",
+          "starterCode": "def validar_prompt(texto: str) -> dict:\n    # Seu código aqui\n    pass",
+          "hints": [
+            "Use texto.strip() e expressões regulares ou split() para normalizar.",
+            "Considere palavras-chave como 'crie', 'analise', 'explique', 'resuma'."
+          ],
+          "testCases": [
+            {
+              "input": "'  Analise o código abaixo por favor  '",
+              "expectedOutput": "{'valido': True, 'palavras_chave': ['analise'], 'tamanho': 35}",
+              "description": "Validação de prompt válido com palavra-chave 'analise'"
+            },
+            {
+              "input": "'oi'",
+              "expectedOutput": "{'valido': False, 'motivo': 'Tamanho insuficiente'}",
+              "description": "Rejeição por tamanho curto"
+            }
+          ]
+        },
+        {
+          "id": "ch-py-inter",
+          "title": "Similaridade de Cosseno entre Vetores de Embeddings",
+          "level": "intermediario",
+          "description": "Implemente o cálculo de similaridade de cosseno puro entre dois vetores de representação semântica (embeddings).",
+          "instructions": "Desenvolva a função `calcular_similaridade(vetor_a: list[float], vetor_b: list[float]) -> float` que retorna o valor entre -1.0 e 1.0 arredondado em 4 casas decimais.",
+          "starterCode": "def calcular_similaridade(vetor_a: list[float], vetor_b: list[float]) -> float:\n    # Implemente o produto escalar dividido pela norma dos vetores\n    pass",
+          "hints": [
+            "Produto escalar: sum(x * y for x, y in zip(vetor_a, vetor_b))",
+            "Norma Euclidiana: math.sqrt(sum(x ** 2 for x in vetor))"
+          ],
+          "testCases": [
+            {
+              "input": "([1.0, 2.0, 3.0], [1.0, 2.0, 3.0])",
+              "expectedOutput": "1.0",
+              "description": "Vetores idênticos possuem similaridade máxima 1.0"
+            },
+            {
+              "input": "([1.0, 0.0], [0.0, 1.0])",
+              "expectedOutput": "0.0",
+              "description": "Vetores ortogonais possuem similaridade 0.0"
+            }
+          ]
+        },
+        {
+          "id": "ch-py-adv",
+          "title": "Pipeline RAG com Re-ranking e Janela de Contexto",
+          "level": "avancado",
+          "description": "Construa um mini-orquestrador RAG que recebe uma consulta, filtra os top-K documentos mais similares e formata um prompt final respeitando um limite de tokens.",
+          "instructions": "Crie a classe `RAGContextManager` com o método `build_context(query_embedding, docs, max_tokens)`.",
+          "starterCode": "class RAGContextManager:\n    def __init__(self, max_tokens=1000):\n        self.max_tokens = max_tokens\n\n    def build_context(self, query_emb: list, docs: list) -> dict:\n        # Filtre, ordene e construa o payload\n        pass",
+          "hints": [
+            "Ordene os documentos pela pontuação decrescente de similaridade.",
+            "Acumule o tamanho do texto até não ultrapassar o limite estipulado."
+          ],
+          "testCases": [
+            {
+              "input": "query com 3 docs disponíveis e limite de 100 caracteres",
+              "expectedOutput": "Payload com os 2 documentos mais relevantes sem estourar o limite",
+              "description": "Garante respeito ao teto de contexto sem truncar o melhor documento"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "geo-spatial",
+      "name": "Geospatial Data Science & Map Analytics",
+      "technology": "GIS & Python",
+      "category": "Geospatial Exploration",
+      "description": "Explore a ciência de dados geográficos: sistemas de coordenadas, geo-fencing, análise espacial de rotas e processamento de imagens de satélite.",
+      "estimatedHours": 50,
+      "level": "intermediario",
+      "prerequisites": ["Python Básico", "Conceitos de Geometria Plana"],
+      "modules": [
+        {
+          "id": "geo-mod-1",
+          "title": "Sistemas de Coordenadas e Projeções Cartográficas",
+          "description": "WGS84, coordenadas geográficas (lat/long) vs UTM projetadas e formatos GeoJSON/Shapefiles.",
+          "durationHours": 12,
+          "topics": ["Datums e Projeções (EPSG)", "Estrutura do GeoJSON", "Bibliotecas Shapely e PyProj", "Conversões de Unidades"]
+        },
+        {
+          "id": "geo-mod-2",
+          "title": "Análise Vetorial Espacial e GeoPandas",
+          "description": "Operações de intersecção espacial, buffers territoriais e agregação por polígonos municipais.",
+          "durationHours": 18,
+          "topics": ["Spatial Joins (sjoin)", "Criação de Buffers", "Cálculo de Áreas e Perímetros", "Visualização com Folium e Leaflet"]
+        },
+        {
+          "id": "geo-mod-3",
+          "title": "Sensoriamento Remoto e Análise Matricial Raster",
+          "description": "Processamento de índices de vegetação (NDVI), calor e análise temporal com Rasterio.",
+          "durationHours": 20,
+          "topics": ["Bandas Espectrais de Satélite", "Cálculo de NDVI", "Filtros Espaciais e Convolução", "Exportação de Mapas Temáticos"]
+        }
+      ],
+      "challenges": [
+        {
+          "id": "ch-geo-init",
+          "title": "Calculador de Distância Esférica Haversine",
+          "level": "iniciante",
+          "description": "Implemente a fórmula de Haversine para calcular a distância em quilômetros entre dois pontos geográficos na Terra.",
+          "instructions": "Crie a função `calcular_haversine(lat1, lon1, lat2, lon2, raio_terra=6371.0) -> float` com precisão de 2 casas decimais.",
+          "starterCode": "import math\n\ndef calcular_haversine(lat1: float, lon1: float, lat2: float, lon2: float) -> float:\n    # Converta graus para radianos e aplique a fórmula\n    pass",
+          "hints": [
+            "Use math.radians() para converter coordenadas.",
+            "a = sin²(Δlat/2) + cos(lat1)*cos(lat2)*sin²(Δlon/2)",
+            "c = 2 * atan2(√a, √(1−a))",
+            "d = R * c"
+          ],
+          "testCases": [
+            {
+              "input": "São Paulo (-23.5505, -46.6333) e Rio de Janeiro (-22.9068, -43.1729)",
+              "expectedOutput": "~357.5 km",
+              "description": "Distância real aproximada entre capitais do Sudeste"
+            }
+          ]
+        },
+        {
+          "id": "ch-geo-inter",
+          "title": "Algoritmo de Geo-Fencing (Ponto dentro de Polígono)",
+          "level": "intermediario",
+          "description": "Implemente o algoritmo de Ray Casting (lançamento de raio) para determinar se um ponto de latitude/longitude está dentro de uma cerca virtual delimitada por um polígono.",
+          "instructions": "Crie `ponto_em_poligono(ponto: tuple, poligono: list[tuple]) -> bool`.",
+          "starterCode": "def ponto_em_poligono(ponto: tuple, poligono: list[tuple]) -> bool:\n    # Retorna True se o ponto está contido na área do polígono\n    pass",
+          "hints": [
+            "Para cada aresta do polígono, verifique se uma semirreta horizontal disparada a partir do ponto cruza o segmento.",
+            "Um número ímpar de cruzamentos indica que o ponto está no interior."
+          ],
+          "testCases": [
+            {
+              "input": "Ponto (5, 5) em quadrado [(0,0), (0,10), (10,10), (10,0)]",
+              "expectedOutput": "True",
+              "description": "Ponto central interno"
+            },
+            {
+              "input": "Ponto (15, 15) no mesmo quadrado",
+              "expectedOutput": "False",
+              "description": "Ponto externo"
+            }
+          ]
+        },
+        {
+          "id": "ch-geo-adv",
+          "title": "Indexação Espacial com Hierarquia Geográfica H3/QuadTree",
+          "level": "avancado",
+          "description": "Construa uma estrutura QuadTree para indexação espacial rápida de milhares de coordenadas de sensores ambientais com busca por raio em O(log n).",
+          "instructions": "Implemente a classe `GeoQuadTree` com métodos `inserir(ponto)` e `buscar_raio(centro, raio)`.",
+          "starterCode": "class GeoQuadTree:\n    def __init__(self, limites, capacidade=4):\n        self.limites = limites\n        self.pontos = []\n        self.dividido = False\n\n    def inserir(self, ponto):\n        pass\n\n    def buscar_raio(self, centro, raio):\n        pass",
+          "hints": [
+            "Subdivida a região em 4 quadrantes (Noroeste, Nordeste, Sudoeste, Sudeste) ao exceder a capacidade.",
+            "Evite percorrer ramos fora da caixa delimitadora do raio de busca."
+          ],
+          "testCases": [
+            {
+              "input": "1.000 pontos inseridos; consulta de raio de 5km",
+              "expectedOutput": "Lista filtrada dos pontos que estão dentro do raio sem testar todos os 1.000 pontos",
+              "description": "Busca indexada com complexidade reduzida"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "javascript-fullstack",
+      "name": "JavaScript & Node.js Modern Stack",
+      "technology": "JavaScript",
+      "category": "Web Development",
+      "description": "Trilha para dominar o desenvolvimento moderno em JavaScript, Node.js assíncrono, arquitetura limpa de APIs e WebSockets.",
+      "estimatedHours": 45,
+      "level": "intermediario",
+      "prerequisites": ["Lógica de Programação", "HTML/CSS Básico"],
+      "modules": [
+        {
+          "id": "js-mod-1",
+          "title": "ESNext, Event Loop e Programação Assíncrona",
+          "description": "Event Loop, Promises, Async/Await, Generators e módulos ECMAScript.",
+          "durationHours": 12,
+          "topics": ["Microtasks vs Macrotasks", "Promises combinadas (all, allSettled, race)", "ESM vs CommonJS", "Streams e Buffers"]
+        },
+        {
+          "id": "js-mod-2",
+          "title": "APIs RESTful, Validação e Clean Architecture",
+          "description": "Design de APIs com validação rigorosa de esquemas, middlewares e separação de camadas.",
+          "durationHours": 18,
+          "topics": ["Inversão de Dependências (DI)", "Zod / Validação de DTOs", "Tratamento Global de Erros", "Autenticação JWT e RBAC"]
+        },
+        {
+          "id": "js-mod-3",
+          "title": "Microsserviços, Mensageria e Resiliência",
+          "description": "Comunicação entre serviços, mensageria assíncrona e padrões de retry/circuit breaker.",
+          "durationHours": 15,
+          "topics": ["Event-Driven Architecture", "Padrão Circuit Breaker", "Caching com Redis", "Observabilidade com OpenTelemetry"]
+        }
+      ],
+      "challenges": [
+        {
+          "id": "ch-js-init",
+          "title": "Formatador de Resposta de API e Tratamento Seguro",
+          "level": "iniciante",
+          "description": "Crie uma função utilitária de middleware que padroniza respostas de sucesso e erro em formato consistente JSON com timestamps ISO.",
+          "instructions": "Implemente `formatApiResponse(data, error = null)` retornando `{ success: boolean, timestamp: string, data: any, error: any }`.",
+          "starterCode": "export function formatApiResponse(data, error = null) {\n  // Implemente o padronizador\n}",
+          "hints": [
+            "Verifique se error é diferente de null ou undefined para definir success: false.",
+            "Use new Date().toISOString() para a marca temporal."
+          ],
+          "testCases": [
+            {
+              "input": "data: { id: 1 }, error: null",
+              "expectedOutput": "{ success: true, timestamp: '...', data: { id: 1 }, error: null }",
+              "description": "Sucesso padronizado"
+            }
+          ]
+        },
+        {
+          "id": "ch-js-inter",
+          "title": "Rate Limiter em Memória com Token Bucket",
+          "level": "intermediario",
+          "description": "Implemente um algoritmo de Rate Limiting baseado em balde de fichas (Token Bucket) para proteção contra abusos em rotas de API.",
+          "instructions": "Crie a classe `TokenBucketRateLimiter` com métodos `consume(clientId)` que retorna boolean indicando se a requisição foi autorizada.",
+          "starterCode": "export class TokenBucketRateLimiter {\n  constructor(capacity, refillRatePerSec) {\n    this.capacity = capacity;\n    this.refillRate = refillRatePerSec;\n    this.buckets = new Map();\n  }\n\n  consume(clientId, tokens = 1) {\n    // Calcule o tempo decorrido e reabasteça as fichas\n  }\n}",
+          "hints": [
+            "Guarde a quantidade atual de tokens e o timestamp da última recarga para cada cliente.",
+            "Reabasteça proportionalmente: novoTokens = min(capacity, atual + (deltaTempo * refillRate))."
+          ],
+          "testCases": [
+            {
+              "input": "Capacidade 5, 5 requisições imediatas seguidas por 1 extra",
+              "expectedOutput": "As 5 primeiras retornam true, a 6ª retorna false",
+              "description": "Bloqueio imediato após estouro da cota"
+            }
+          ]
+        },
+        {
+          "id": "ch-js-adv",
+          "title": "Padrão Circuit Breaker com Estados Aberto/Fechado/Semi-Aberto",
+          "level": "avancado",
+          "description": "Construa um Circuit Breaker completo com máquina de estados para envelopar chamadas HTTP instáveis a serviços de terceiros.",
+          "instructions": "Implemente `CircuitBreaker` com monitoramento de taxa de falha e transição automática entre CLOSED, OPEN e HALF_OPEN.",
+          "starterCode": "export class CircuitBreaker {\n  constructor(action, options = { failureThreshold: 3, resetTimeoutMs: 5000 }) {\n    this.action = action;\n    this.state = 'CLOSED';\n  }\n\n  async execute(...args) {\n    // Controle de estado e disparo de chamadas\n  }\n}",
+          "hints": [
+            "Se o estado for OPEN e o tempo de cooldown passou, mude para HALF_OPEN e teste 1 chamada.",
+            "Se em HALF_OPEN falhar, reabra o circuito."
+          ],
+          "testCases": [
+            {
+              "input": "3 falhas consecutivas",
+              "expectedOutput": "Transição para estado OPEN rejeitando chamadas imediatamente sem chamar a action",
+              "description": "Proteção do serviço contra sobrecarga"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cloud-devops",
+      "name": "Cloud Computing & DevOps Expedition",
+      "technology": "DevOps",
+      "category": "Infrastructure & Cloud",
+      "description": "Aprenda a construir esteiras de entrega contínua, gerenciar containers com Docker/Kubernetes e provisionar infraestrutura como código.",
+      "estimatedHours": 55,
+      "level": "intermediario",
+      "prerequisites": ["Comandos Básicos de Linux", "Redes de Computadores"],
+      "modules": [
+        {
+          "id": "dev-mod-1",
+          "title": "Contêineres com Docker e Boas Práticas de Imagem",
+          "description": "Criação de Dockerfiles multi-stage, isolamento de processos e otimização de camadas.",
+          "durationHours": 15,
+          "topics": ["Multi-stage Builds", "Gerenciamento de Imagens e Registries", "Docker Compose", "Princípios de Segurança e Não-Root"]
+        },
+        {
+          "id": "dev-mod-2",
+          "title": "Orquestração com Kubernetes (K8s)",
+          "description": "Pods, Deployments, Services, ConfigMaps, Secrets e estratégias de alta disponibilidade.",
+          "durationHours": 20,
+          "topics": ["Arquitetura K8s (Control Plane vs Worker)", "Deployments e Rolling Updates", "Ingress Controllers", "Sondas Liveness e Readiness"]
+        },
+        {
+          "id": "dev-mod-3",
+          "title": "Infraestrutura como Código (IaC) e CI/CD Pipelines",
+          "description": "Provisionamento declarativo com Terraform e automação de pipelines com GitHub Actions.",
+          "durationHours": 20,
+          "topics": ["Terraform State e Providers", "GitHub Actions Workflows", "Segredos e OIDC", "Monitoramento e Logs Centralizados"]
+        }
+      ],
+      "challenges": [
+        {
+          "id": "ch-dev-init",
+          "title": "Validador Sintático de Dockerfile",
+          "level": "iniciante",
+          "description": "Crie um validador de regras de boas práticas para arquivos Dockerfile (ex: presença de USER não-root, ausência de 'latest' em imagens base).",
+          "instructions": "Implemente a função `validar_dockerfile(conteudo: str) -> list[str]` retornando a lista de avisos encontrados.",
+          "starterCode": "def validar_dockerfile(conteudo: str) -> list[str]:\n    # Analise linha por linha e encontre desvios de boas práticas\n    pass",
+          "hints": [
+            "Verifique se 'FROM' utiliza a tag ':latest' e alerte.",
+            "Verifique se existe alguma instrução 'USER' antes do CMD/ENTRYPOINT."
+          ],
+          "testCases": [
+            {
+              "input": "'FROM node:latest\\nRUN npm install\\nCMD [\"node\", \"app.js\"]'",
+              "expectedOutput": "['Evite tag :latest em imagens base', 'Defina um usuário não-root (USER)']",
+              "description": "Identificação de violações comuns de segurança"
+            }
+          ]
+        },
+        {
+          "id": "ch-dev-inter",
+          "title": "Simulador de Rolling Update em Cluster de Pods",
+          "level": "intermediario",
+          "description": "Implemente um algoritmo que simula a estratégia de atualização contínua (Rolling Update) de réplicas em um cluster, respeitando `maxSurge` e `maxUnavailable`.",
+          "instructions": "Implemente a classe `RollingUpdateSimulator` simulando passos de término de pods antigos e inicialização de novos pods saudáveis.",
+          "starterCode": "class RollingUpdateSimulator:\n    def __init__(self, replicas=5, max_surge=1, max_unavailable=1):\n        self.replicas = replicas\n        self.max_surge = max_surge\n        self.max_unavailable = max_unavailable\n\n    def executar_passo(self, estado_atual) -> dict:\n        pass",
+          "hints": [
+            "Nunca permita que o total de pods saudáveis fique abaixo de (replicas - max_unavailable).",
+            "Nunca permita que o total de pods simultâneos ultrapasse (replicas + max_surge)."
+          ],
+          "testCases": [
+            {
+              "input": "5 réplicas, maxSurge=1, maxUnavailable=1",
+              "expectedOutput": "Sempre mantém entre 4 e 6 pods ativos durante a transição",
+              "description": "Garante estabilidade sem indisponibilidade de serviço"
+            }
+          ]
+        },
+        {
+          "id": "ch-dev-adv",
+          "title": "Orquestrador de Rollback Automático Canário",
+          "level": "avancado",
+          "description": "Desenvolva o mecanismo decisório de um Canary Deployment que monitora a taxa de erro HTTP 5xx e latência p99 em tempo real e dispara rollback imediato se a taxa de erro for superior a 1%.",
+          "instructions": "Implemente `avaliar_metricas_canary(metricas_historicas: list[dict]) -> dict`.",
+          "starterCode": "def avaliar_metricas_canary(metricas: list[dict]) -> dict:\n    # Analise requisições totais vs erros 5xx e latência p99\n    pass",
+          "hints": [
+            "Calcule taxa_erro = (erros_5xx / total_requisicoes) * 100",
+            "Retorne status 'PROMOTE', 'HOLD' ou 'ROLLBACK' com a justificativa técnica."
+          ],
+          "testCases": [
+            {
+              "input": "1000 requisições com 15 erros 5xx (1.5%)",
+              "expectedOutput": "{ 'decisao': 'ROLLBACK', 'motivo': 'Taxa de erro 1.5% excedeu o limite de 1.0%' }",
+              "description": "Disparo seguro de rollback"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "csharp-dotnet",
+      "name": ".NET 9 & C# Enterprise Architecture",
+      "technology": "C# .NET",
+      "category": "Enterprise Systems",
+      "description": "Trilha avançada com foco em Clean Architecture, Domain-Driven Design (DDD), Serilog estruturado e APIs de alta vazão com .NET 9.",
+      "estimatedHours": 50,
+      "level": "avancado",
+      "prerequisites": ["POO Avançada", "Conhecimento em C# ou Java"],
+      "modules": [
+        {
+          "id": "cs-mod-1",
+          "title": "Clean Architecture e Domain-Driven Design (DDD)",
+          "description": "Separação rigorosa de Domain, Application, Infrastructure e Presentation.",
+          "durationHours": 18,
+          "topics": ["Entidades, Value Objects e Agregados", "Especificação de Repositórios", "Injeção de Dependências Nativa", "Padrão Result/Either para Erros de Domínio"]
+        },
+        {
+          "id": "cs-mod-2",
+          "title": "Logging Estruturado com Serilog e Observabilidade",
+          "description": "Configuração de logs diários particionados por data, correlação de requisições e telemetria OpenTelemetry.",
+          "durationHours": 14,
+          "topics": ["Serilog Sinks (File, Console, Seq)", "Enrichers e Correlation IDs", "Middleware Global de Exceção", "Mascaramento de Dados Sensíveis (PII)"]
+        },
+        {
+          "id": "cs-mod-3",
+          "title": "Processamento Concorrente de Alta Performance e EF Core",
+          "description": "Canais assíncronos (System.Threading.Channels), Span<T>, Memory<T> e queries eficientes no Entity Framework Core.",
+          "durationHours": 18,
+          "topics": ["Canais de Produtor/Consumidor Assíncrono", "Span e Otimização de Garbage Collector", "AsNoTracking e Split Queries no EF", "Testes de Integração com Testcontainers"]
+        }
+      ],
+      "challenges": [
+        {
+          "id": "ch-cs-init",
+          "title": "Implementação do Padrão Result<T> em C#",
+          "level": "iniciante",
+          "description": "Crie um tipo genérico `Result<T>` sem lançar exceções para controle de fluxo de regras de negócio com suporte a múltiplos erros.",
+          "instructions": "Implemente a classe readonly struct `Result<T>` com métodos estáticos `Success(T data)` e `Failure(string error)`.",
+          "starterCode": "public readonly struct Result<T>\n{\n    public bool IsSuccess { get; }\n    public T? Value { get; }\n    public string? Error { get; }\n    // Complete a implementação\n}",
+          "hints": [
+            "Garanta que se IsSuccess for true, Error seja nulo.",
+            "Implemente método `Match<R>(Func<T, R> onSuccess, Func<string, R> onFailure)` para facilitar consumo funcional."
+          ],
+          "testCases": [
+            {
+              "input": "Result<int>.Success(42)",
+              "expectedOutput": "IsSuccess = true, Value = 42",
+              "description": "Encapsulamento de sucesso"
+            }
+          ]
+        },
+        {
+          "id": "ch-cs-inter",
+          "title": "Middleware de Logging Estruturado com Correlation ID",
+          "level": "intermediario",
+          "description": "Desenvolva um middleware ASP.NET Core que gera ou propaga um cabeçalho `X-Correlation-ID`, adicionando-o ao escopo de log (LogContext) em todas as mensagens.",
+          "instructions": "Implemente a classe `CorrelationIdMiddleware` com injeção de `RequestDelegate` e `ILogger`.",
+          "starterCode": "public class CorrelationIdMiddleware\n{\n    private readonly RequestDelegate _next;\n    public CorrelationIdMiddleware(RequestDelegate next) => _next = next;\n    \n    public async Task InvokeAsync(HttpContext context, ILogger<CorrelationIdMiddleware> logger)\n    {\n        // Verifique o header X-Correlation-ID ou crie um novo Guid\n    }\n}",
+          "hints": [
+            "Use context.Response.Headers.Append('X-Correlation-ID', correlationId).",
+            "Use logger.BeginScope(...) para anexar a propriedade a todos os logs da thread assíncrona."
+          ],
+          "testCases": [
+            {
+              "input": "Requisição sem cabeçalho X-Correlation-ID",
+              "expectedOutput": "Gera novo Guid e adiciona tanto ao Response quanto ao LogContext",
+              "description": "Garantia de rastreabilidade ponta a ponta"
+            }
+          ]
+        },
+        {
+          "id": "ch-cs-adv",
+          "title": "Fila Produtor-Consumidor em Memória com System.Threading.Channels",
+          "level": "avancado",
+          "description": "Implemente um serviço em background de alto throughput para processamento assíncrono de eventos de telemetria utilizando `Channel<T>` limitado (bounded) com política de backpressure.",
+          "instructions": "Crie `BoundedTelemetryProcessor<T>` com capacidade máxima configurável e consumidores concorrentes paralelos.",
+          "starterCode": "public class BoundedTelemetryProcessor<T>\n{\n    private readonly Channel<T> _channel;\n    public BoundedTelemetryProcessor(int capacity)\n    {\n        _channel = Channel.CreateBounded<T>(new BoundedChannelOptions(capacity)\n        {\n            FullMode = BoundedChannelFullMode.Wait\n        });\n    }\n    // Implemente EnqueueAsync e StartConsumingAsync\n}",
+          "hints": [
+            "Use BoundedChannelFullMode.Wait para pausar os produtores e evitar OutOfMemory.",
+            "Use Parallel.ForEachAsync ou múltiplos workers com CancellationToken."
+          ],
+          "testCases": [
+            {
+              "input": "100.000 mensagens disparadas com 4 consumidores concorrentes",
+              "expectedOutput": "Todas as mensagens processadas com consumo ordenado e sem vazamento de memória",
+              "description": "Alta performance e backpressure sob carga pesada"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
